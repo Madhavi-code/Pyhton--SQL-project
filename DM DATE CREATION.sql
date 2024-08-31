@@ -12,7 +12,43 @@ CREATE TABLE IF NOT EXISTS datedim  (
     PRIMARY KEY(date_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1000;
 
+delimiter //
 
+DROP PROCEDURE IF EXISTS datedimbuild;
+CREATE PROCEDURE datedimbuild (p_start_date DATE, p_end_date DATE)
+BEGIN
+    DECLARE v_full_date DATE;
+
+    DELETE FROM datedim;
+
+    SET v_full_date = p_start_date;
+    WHILE v_full_date < p_end_date DO
+
+        INSERT INTO datedim (
+            fulldate ,
+            dayofmonth ,
+            dayofyear ,
+            dayofweek ,
+            dayname ,
+            monthnumber,
+            monthname,
+            year,
+            quarter
+        ) VALUES (
+            v_full_date,
+            DAYOFMONTH(v_full_date),
+            DAYOFYEAR(v_full_date),
+            DAYOFWEEK(v_full_date),
+            DAYNAME(v_full_date),
+            MONTH(v_full_date),
+            MONTHNAME(v_full_date),
+            YEAR(v_full_date),
+            QUARTER(v_full_date)
+        );
+
+        SET v_full_date = DATE_ADD(v_full_date, INTERVAL 1 DAY);
+    END WHILE;
+END;
 CALL `hr_data`.`datedimbuild`('2023-01-01','2025-12-31');
 
 select * from datedim
