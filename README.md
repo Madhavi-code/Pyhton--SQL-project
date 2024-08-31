@@ -14,4 +14,4 @@ step 3 -- to create Dimension date table --DM DATE Creation.sql
 step 4 -- Sample SQL queries --SQL queries 
 step 5 -- access data in my sql and create bar chart -- HR DATA Questions.ipynb
 
-Data set detais - eployee details 
+Data set details - employee data 
