@@ -6,7 +6,7 @@ Created barchart in Jupyter notebook utilising data in SQL(SQL connector)
 Built with/ pre requisites
 MySQL
 Python
-Jupyrt noteboot
+Jupyter noteboot
 
 step 1 -- download CSV files using link mentioned  -- DATA SET link
 step 2 -- import csv files with -- Python project HR DATA.ipynb
